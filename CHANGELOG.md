@@ -1,4 +1,4 @@
-Changelog for 0.0.64-a:
+Changelog for 0.0.64-c:
 ====================
 
 * Unified the CCU addon and application version numbers.

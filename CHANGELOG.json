@@ -1,6 +1,6 @@
 {
     "versions": {
-        "0.0.64-a": {
+        "0.0.64-c": {
             "descriptions": [
                 "Unified the CCU addon and application version numbers."
             ],
@@ -29,5 +29,5 @@
             "issues": []
         }
     },
-    "latest": "0.0.64-a"
+    "latest": "0.0.64-c"
 }
