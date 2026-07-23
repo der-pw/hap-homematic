@@ -17,13 +17,12 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20.x
-          cache: npm
+          node-version: 22.x
 
       - name: Install dependencies
         run: npm install
@@ -49,7 +48,7 @@ jobs:
           bash genscript.sh
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+          uses: actions/upload-artifact@v5
         with:
           name: hap-homematic-addon-${{ github.sha }}
           path: addon_installer/hap-homematic-*.tar.gz
