@@ -6,7 +6,7 @@ CONFIG_URL=/addons/hap-homematic/index.html
 CONFIG_DIR=/usr/local/etc/config
 ADDONCFG_DIR=${CONFIG_DIR}/addons/${ADDON_NAME}
 PIDFILE=/var/run/hap-homematic.pid 
-VER=0.0.14
+VER=0.0.64-a
 EXEC=node
 EXECARGS=$HAPDIR/index.js
 

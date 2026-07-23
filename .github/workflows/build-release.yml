@@ -1,0 +1,68 @@
+name: Build and release addon
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Check tag version
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        run: |
+          expected="${GITHUB_REF_NAME#v}"
+          actual="$(node -p "require('./package.json').version")"
+          test "$expected" = "$actual" || {
+            echo "Tag $GITHUB_REF_NAME does not match package.json version $actual"
+            exit 1
+          }
+
+      - name: Build CCU addon archive
+        shell: bash
+        run: |
+          cd addon_installer
+          bash genscript.sh
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hap-homematic-addon-${{ github.sha }}
+          path: addon_installer/hap-homematic-*.tar.gz
+          if-no-files-found: error
+
+      - name: Create GitHub release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          gh release create "$GITHUB_REF_NAME" \
+            "addon_installer/hap-homematic-${version}.tar.gz" \
+            --title "hap-homematic ${version}" \
+            --generate-notes

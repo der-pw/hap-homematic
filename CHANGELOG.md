@@ -1,3 +1,8 @@
+Changelog for 0.0.64-a:
+====================
+
+* Unified the CCU addon and application version numbers.
+
 Changelog for 0.0.63:
 ====================
 

@@ -1,5 +1,11 @@
 {
     "versions": {
+        "0.0.64-a": {
+            "descriptions": [
+                "Unified the CCU addon and application version numbers."
+            ],
+            "issues": []
+        },
         "0.0.63": {
             "descriptions": [
                 "Just one BugFix (in some cases the ui will not get devices from core)"
@@ -23,5 +29,5 @@
             "issues": []
         }
     },
-    "latest": "0.0.63"
+    "latest": "0.0.64-a"
 }

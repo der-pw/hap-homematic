@@ -37,6 +37,7 @@ cp -af hap/etc/www/hap-homematic-logo.png ${ADDONWWW_DIR}/${ADDONNAME}
 cp -af rc.d/* ${RCD_DIR}
 # copy installer
 cp -af hap/etc/postinstall.sh ${ADDONCFG_DIR}/etc
+cp -af hap/etc/hap-homematic.tgz ${ADDONCFG_DIR}/etc
 chmod +x ${ADDONCFG_DIR}/etc/postinstall.sh
 
 #build system launcher
