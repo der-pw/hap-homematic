@@ -50,7 +50,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v5
         with:
-            name: "hap-homematic-addon-${{ github.sha }}"
+          name: "hap-homematic-addon-${{ github.sha }}"
           path: addon_installer/hap-homematic-*.tar.gz
           if-no-files-found: error
 
